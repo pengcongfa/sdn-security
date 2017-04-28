@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--<meta charset="UTF-8">-->
+    <title>应用权限管理系统</title>
+    <link rel="stylesheet"  href="lib/myStyle.css">
+    <link rel="stylesheet"  href="lib/bootstrap.min.css">
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-clockpicker.min.css">
+    <script type="text/javascript" src="lib/bootstrap-clockpicker.min.js"></script>
+    <script src="lib/myJS.js"></script>
+</head>
+<body onload="show()">
+<div class="container">
+<div  id="head">
+    <img src="img/monkey.png"><span>&nbsp;&nbsp;应用管理系统后台</span>
+    <div id="nowtime"></div>
+    <div id="info">
+        <div>欢迎光临&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <a href="index.html"><div id="log_off" >退出</div></a>
+        <a href="../login.html"><div style="margin-left: 10px;">修改密码</div></a>
+    </div>
+</div>
+
+
+    <!--<h2>动态标签</h2>-->
+    <!--<p><strong>提示:</strong> 与 .tab-pane 和 data-toggle="tab" (data-toggle="pill" ) 一同使用, 设置标签页对应的内容随标签的切换而更改。</p>-->
+    <div class="row">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#home"  style="font-size: large;font-family:微软雅黑;"><strong>身份信息管理</strong></a></li>
+        <li><a data-toggle="tab" href="#menu1"  style="font-size: large;font-family:微软雅黑;"><strong>权限信息管理</strong></a></li>
+        <li><a data-toggle="tab" href="#menu2"  style="font-size: large;font-family:微软雅黑;"><strong>属性控制管理</strong></a></li>
+        <li><a data-toggle="tab" href="#menu3" style="font-size: large;font-family:微软雅黑;"><strong>网络视图</strong></a></li>
+    </ul>
+    </div>
+    <div class="row">
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <!--<div class="container">-->
+                        <div class="row">
+                            <div class="col-md-3">
+                            <ul class="nav nav-tabs  nav-stacked">
+                                 <li class="active"><a data-toggle="tab" href="#a0" onclick="showAppListInfo()"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>应用信息查询</strong></a></li>
+                                 <li><a data-toggle="tab" href="#a1"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>应用信息注册</strong></a></li>
+                                 <li><a data-toggle="tab" href="#a2"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>应用信息修改</strong></a></li>
+                                 <li><a data-toggle="tab" href="#a3"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>应用信息注销</strong></a></li>
+                            </ul>
+                            </div>
+                            <div class="col-md-9" ><br>
+                             <div class="tab-content">
+                                 <div id="a0" class="tab-pane fade in active">
+                                     <table class="table table-condensed  table-striped table-hover">
+                                         <!--<caption>精简表格布局</caption>-->
+                                         <thead>
+                                         <tr>
+                                             <th>应用ID</th>
+                                             <th>名称</th>
+                                             <th>密钥</th>
+                                             <th>注册商</th>
+                                             <th>注册时间</th>
+                                             <th>有效期</th>
+                                             <th>信用评级</th>
+                                         </tr>
+                                         </thead>
+                                         <tbody id="infoCheckTbody">
+
+                                         </tbody>
+                                     </table>
+                                </div>
+                                 <div id="a1" class="tab-pane fade">
+                                     <br>
+                                     <form class="form-horizontal" role="form" id="registityForm">
+                                         <div class="form-group">
+                                             <label for="appId" class="col-sm-2 control-label">AppID</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appId" name="appId"
+                                                        placeholder="请输入ID">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="appName" class="col-sm-2 control-label">AppName</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appName" name="appName"
+                                                        placeholder="请输入Name">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="appKey" class="col-sm-2 control-label">AppKey</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appKey" name="appKey"
+                                                        placeholder="请输入Key">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="registry" class="col-sm-2 control-label">注册商</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="registry" name="registry"
+                                                        placeholder="请输入注册商">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="registrationDate" class="col-sm-2 control-label">注册日期</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="registrationDate" name="registrationDate"
+                                                        placeholder="请输入注册日期">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="expDate" class="col-sm-2 control-label">有效期</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="expDate" name="expDate"
+                                                        placeholder="请输入有效期">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="ATL" class="col-sm-2 control-label">信用评级</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="ATL" name="ATL"
+                                                        placeholder="请输入信任级别1..2..3..4">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="col-sm-offset-2 col-sm-10">
+                                                 <button type="button" class="btn btn-info" id="registityButton">注册</button>
+                                             </div>
+                                         </div>
+                                     </form>
+                                 </div>
+                                 <div id="a2" class="tab-pane fade">
+                                     <br>
+                                     <form class="form-horizontal" role="form" id="updateForm">
+                                         <div class="form-group">
+                                             <label for="appId1" class="col-sm-2 control-label">AppID</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appId1" name="appId"
+                                                        placeholder="请输入ID">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="appName1" class="col-sm-2 control-label">AppName</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appName1" name="appName"
+                                                        placeholder="请输入Name">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="appKey1" class="col-sm-2 control-label">AppKey</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="appKey1" name="appKey"
+                                                        placeholder="请输入Key">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="registry1" class="col-sm-2 control-label">注册商</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="registry1" name="registry"
+                                                        placeholder="请输入注册商">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="registrationDate1" class="col-sm-2 control-label">注册日期</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="registrationDate1" name="registrationDate"
+                                                        placeholder="请输入注册日期">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="expDate1" class="col-sm-2 control-label">有效期</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="expDate1" name="expDate"
+                                                        placeholder="请输入有效期">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="ATL1" class="col-sm-2 control-label">信用评级</label>
+                                             <div class="col-sm-3">
+                                                 <input type="text" class="form-control" id="ATL1" name="ATL"
+                                                        placeholder="请输入信任级别1..2..3..4">
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="col-sm-offset-2 col-sm-10">
+                                                 <button type="button" class="btn btn-warning" id="updateButton">修改</button>
+                                             </div>
+                                         </div>
+                                     </form>
+                                 </div>
+                                <div id="a3" class="tab-pane fade">
+                                    <br><br>
+                                    <form class="form-inline" role="form" id="deleteForm">
+                                        <div class="form-group">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label  for="deleteAppId">请输入AppID:</label>
+                                            <input type="text" class="form-control" id="deleteAppId" name="deleteAppId"
+                                                   placeholder="请输入AppID">
+                                        </div>
+                                        <button type="button" name="deleteButton" id="deleteButton" class="btn btn-danger">注销</button>
+                                    </form>
+                                </div>
+                             </div>
+                            </div>
+                         </div>
+                    <!--</div>-->
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav nav-tabs  nav-stacked">
+                                <li class="active"><a data-toggle="tab" href="#b0"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>权限初始化</strong></a></li>
+                                <li><a data-toggle="tab" href="#b1"  style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>权限查询</strong></a></li>
+                                <li><a data-toggle="tab" href="#b2" style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>权限增加</strong></a></li>
+                                <li><a data-toggle="tab" href="#b3" style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>权限移除</strong></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content">
+                                <div id="b0" class="tab-pane fade in active">
+                                    <div id="permissionSelect" style="width: 750px;height:380px;border-style: solid;border-width: 2px;border-color: silver"><br>
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group">
+                                            <label  for="permissionAppID1">请输入AppID:</label>
+                                            <input type="text" class="form-control" id="permissionAppID1"
+                                                   placeholder="请输入AppID">
+                                        </div>
+                                        <button type="button" name="submitButton" id="submitButton" class="btn btn-info">提交</button>
+                                        <p class="form-control-static">&nbsp;&nbsp;&nbsp;&nbsp;请勾选权限</p>
+                                    </form><br><br>
+                                    <div>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="permissionSet" value="read_topology"> read_topology
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="permissionSet" value="read_all_flow"> read_all_flow
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="permissionSet" value="read_statistics"> read_statistics
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="permissionSet" value="read_pkt_in_payload"> read_pkt_in_payload
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="permissionSet" value="read_controller_info"> read_controller_info
+                                        </label>
+                                    </div><br><br><br>
+                                        <div>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="pkt_in_event"> pkt_in_event
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="flow_removed_event"> flow_removed_event
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="error_event"> error_event
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="flow_mod_route">flow_mod_route
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="flow_mod_drop"> flow_mod_drop
+                                            </label>
+                                        </div><br><br><br>
+                                        <div>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="set_flow_priority"> set_flow_priority
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="set_devices_config"> set_devices_config
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="set_pkt_out"> set_pkt_out
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="flow_mod_modify_hdr"> flow_mod_modify_hdr
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="permissionSet" value="modify_all_flows"> modify_all_flows
+                                            </label>
+                                        </div><br><br><br>
+                                    </div>
+                                </div>
+                                <div id="b1" class="tab-pane fade">
+                                    <div id="permissionCheck" style="width: 750px;height:380px;border-style: solid;border-width: 2px;border-color: silver"><br>
+                                    <form class="form-inline" role="form">
+                                    <label  for="permissionAppID2">请输入查询的AppID:</label>
+                                    <input type="text" class="form-control" id="permissionAppID2" placeholder="请输入AppID">
+                                    <input type="button"  name="checkButton"  id="checkButton"  value="查询"  class="btn btn-success" />
+                                    </form>
+                                    <table id="queryTable">
+                                        <tbody id="perCheckTbody">
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                                <div id="b2" class="tab-pane fade">
+                                    <div id="permissionAdd0" style="width: 750px;height:100%;border-style: solid;border-width: 2px;border-color: silver"><br>
+                                    <form class="form-inline" role="form">
+                                        <label  for="permissionAppID3">请输入AppID:</label>
+                                        <input type="text" class="form-control" id="permissionAppID3" placeholder="请输入AppID">
+                                        <input type="button"  name="addButton"  id="addButton"  value="确认"  class="btn btn-warning" />
+                                        <input type="button"  name="ackAddButton"  id="ackAddButton"  value="添加"  class="btn btn-success" />
+                                    </form><br>
+                                    <div  id="permissionAdd" style="visibility: hidden;width: 750px;height:100%;border-style: solid;border-width: 2px;border-color: silver"><br><br>
+                                            <div>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="read_topology"> read_topology
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="read_all_flow"> read_all_flow
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="read_statistics"> read_statistics
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="read_pkt_in_payload"> read_pkt_in_payload
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="read_controller_info"> read_controller_info
+                                                </label>
+                                            </div><br><br><br>
+                                            <div>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="pkt_in_event"> pkt_in_event
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="flow_removed_event"> flow_removed_event
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="error_event"> error_event
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="flow_mod_route">flow_mod_route
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="flow_mod_drop"> flow_mod_drop
+                                                </label>
+                                            </div><br><br><br>
+                                            <div>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="set_flow_priority"> set_flow_priority
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="set_devices_config"> set_devices_config
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="set_pkt_out"> set_pkt_out
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="flow_mod_modify_hdr"> flow_mod_modify_hdr
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="permissionSetReload" value="modify_all_flows"> modify_all_flows
+                                                </label>
+                                            </div><br><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="b3" class="tab-pane fade">
+                                    <div id="permissionRemove0" style="width: 750px;height:380px;border-style: solid;border-width: 2px;border-color: silver"><br>
+                                    <form class="form-inline" role="form">
+                                        <label  for="permissionAppID4">请输入AppID:</label>
+                                        <input type="text" class="form-control" id="permissionAppID4" placeholder="请输入AppID">
+                                        <input type="button"  name="removeButton"  id="removeButton"  value="确认"  class="btn btn-danger" />
+                                        <input type="button"  name="ackRemoveButton"  id="ackRemoveButton"  value="移除"  class="btn btn-primary" />
+                                    </form><br><br>
+                                    <div id="permissionRemove" style="visibility: hidden;width: 750px;height:100%;border-style: solid;border-width: 2px;border-color: silver">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                   <div class="row">
+                        <div class="col-md-3">
+                            <ul class="nav nav-tabs  nav-stacked">
+                                <li class="active"><a data-toggle="tab" href="#c0" style="background-color: silver;font-size: medium;font-family:微软雅黑"><strong>创建基于属性的策略</strong></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content">
+                                <div id="c0" class="tab-pane fade in active">
+                                    <form class="form-horizontal" role="form" id="creatPoliccyForm"><br>
+                                        <div class="form-group">
+                                            <label for="starttime" class="col-sm-2 control-label">允许的时间段:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="starttime" name="starttime" value="00:00"
+                                                       placeholder="起始时间">
+                                                <label  for="endtime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+                                                </label>
+                                                <input type="text" class="form-control" id="endtime" name="endtime" value="24:00"
+                                                       placeholder="截止时间">
+                                            </div>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="registrar" class="col-sm-2 control-label">允许的注册商:</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="registrar" name="registry"
+                                                       placeholder="请输入registry">
+                                            </div>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="button" class="btn btn-success" id="creatPolicyButton">创建策略</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    <iframe src="http://localhost:8080/ui/uiweb/index.html "  width="100%" height="550px"></iframe>
+                </div>
+            </div>
+        </div>
+</div>
+<script type="text/javascript">
+    var input1=$('#starttime').clockpicker({
+        placement: 'right',
+        align: 'top'
+    });
+    var input2=$('#endtime').clockpicker({
+        placement: 'right',
+        align: 'top'
+    });
+</script>
+</body>
+</html>

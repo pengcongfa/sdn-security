@@ -1,0 +1,56 @@
+body{
+    margin: 0 auto;
+    padding: 0 auto;
+    background-color: #3c763d;
+}
+
+#head
+{
+    height: 75px;
+    width: 100%;
+    background: rgba(255,255,255,0.9) ;
+    border-top: inset #FF0000 ;
+    position: relative;
+    margin-bottom: 2px;
+    border-bottom: inset #E0E0E0;
+}
+#head img{
+    height: 45px;
+    width: 35px;
+    margin: 10px 0px 2px 150px ;
+}
+#head span{
+    font-size: 1.5em;
+    color: #3D3D3D;
+    position: relative;
+    top:6px;
+}
+
+#head div{
+    display: inline;
+}
+#info{
+    position: relative;
+    left: 37%;
+    top:3px;
+}
+
+#log_off{
+    border-right: inset #3D3D3D;
+    margin-left:10px;
+    padding-right:10px;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a{
+    text-align: center;
+    font-style: inherit;
+}
+#nowtime{
+    position: relative;
+    top: 3px;
+    left: 11%;
+}

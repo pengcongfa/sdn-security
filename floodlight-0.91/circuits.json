@@ -1,0 +1,3 @@
+{"outPort": 3, "datetime": "Thu Apr 27 19:58:34 2017", "name": "testCircuit", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:02"}
+{"outPort": 2, "datetime": "Thu Apr 27 19:58:36 2017", "name": "testCircuit", "inPort": 1, "Dpid": "00:00:00:00:00:00:00:01"}
+{"outPort": 1, "datetime": "Thu Apr 27 19:58:38 2017", "name": "testCircuit", "inPort": 3, "Dpid": "00:00:00:00:00:00:00:03"}
