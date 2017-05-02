@@ -21,11 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.floodlightcontroller.accessPermissionMS.appInfoStorage.IAppInfoStorageService;
+import net.floodlightcontroller.accessPermissionMS.appInfoStorage.PermissionType;
+import net.floodlightcontroller.accessPermissionMS.xacmlCtrModule.IXacmlCtrService;
 import net.floodlightcontroller.storage.IStorageSourceService;
 import net.floodlightcontroller.storage.StorageSourceNotification;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import org.restlet.data.Form;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
@@ -36,20 +41,62 @@ public class StorageNotifyResource extends ServerResource {
     
     @Post("json")
     public Map<String,Object> notify(String entity) throws Exception {
+    	 IAppInfoStorageService accessCheck = 
+          		(IAppInfoStorageService) getContext().getAttributes().
+          		    get(IAppInfoStorageService.class.getCanonicalName()); 
+          IXacmlCtrService xacmlCtr=(IXacmlCtrService)getContext().getAttributes().
+         		    get(IXacmlCtrService.class.getCanonicalName());
+          
+          IStorageSourceService storageSource = 
+              (IStorageSourceService)getContext().getAttributes().
+                  get(IStorageSourceService.class.getCanonicalName());
+          
+          Form form1 = getRequest().getResourceRef().getQueryAsForm() ;    //获取查询参数  
+          String appId=form1.getFirstValue("appid");
+          String appkey=form1.getFirstValue("appkey");
+    	
         List<StorageSourceNotification> notifications = null;
         ObjectMapper mapper = new ObjectMapper();
-        notifications = 
-            mapper.readValue(entity, 
-                    new TypeReference<List<StorageSourceNotification>>(){});
         
-        IStorageSourceService storageSource = 
-            (IStorageSourceService)getContext().getAttributes().
-                get(IStorageSourceService.class.getCanonicalName());
-        storageSource.notifyListeners(notifications);
-        
-        HashMap<String, Object> model = new HashMap<String,Object>();
-        model.put("output", "OK");
-        return model;
+        if(appId.equals("1")){
+        	  notifications = 
+        	            mapper.readValue(entity, 
+        	                    new TypeReference<List<StorageSourceNotification>>(){});
+
+        	        storageSource.notifyListeners(notifications);
+        	        
+        	        HashMap<String, Object> model = new HashMap<String,Object>();
+        	        model.put("output", "OK");
+        	        return model;
+        }
+       else{
+            if(accessCheck.appAuthentication(appId, appkey)){
+                if(accessCheck.appPermissionSetFinder(appId, PermissionType.set_devices_config)){
+                	 if(xacmlCtr.getXacmlEvaluateResult(appId)){
+                		  notifications = 
+                		            mapper.readValue(entity, 
+                		                    new TypeReference<List<StorageSourceNotification>>(){});
+
+                		        storageSource.notifyListeners(notifications);
+                		        
+                		        HashMap<String, Object> model = new HashMap<String,Object>();
+                		        model.put("output", "OK");
+                		        return model;
+                	   }
+                	  else{
+                           log.info("---------应用ID："+appId+"-------未通过基于属性的XACML访问控制");
+                          }
+                  }
+                 else{
+                          log.info("---------应用ID："+appId+"-------权限检查失败：无 set_devices_config 权限");
+                 	 }
+               }
+              else{
+                      log.info("---------应用ID："+appId+"-------身份认证失败");
+                  }
+            HashMap<String, Object> model = new HashMap<String,Object>();
+	        model.put("output", "ERROR");
+	        return model;
+       }
     }
-    
 }

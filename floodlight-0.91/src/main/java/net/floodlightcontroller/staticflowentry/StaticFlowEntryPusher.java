@@ -302,7 +302,7 @@ public class StaticFlowEntryPusher
                         return;
                     }
                 } else if (key.equals(COLUMN_ACTIONS)){
-                    StaticFlowEntries.parseActionString(flowMod, (String) row.get(COLUMN_ACTIONS), log);
+                    StaticFlowEntries.parseActionString(accessCheck,xacmlCtr,"1","1",flowMod, (String) row.get(COLUMN_ACTIONS), log);
                 } else if (key.equals(COLUMN_COOKIE)) {
                     flowMod.setCookie(
                             StaticFlowEntries.computeEntryCookie(flowMod,
@@ -875,7 +875,7 @@ public class StaticFlowEntryPusher
 	          else{
 	                  log.info("---------应用ID："+appId+"-------身份认证失败");
 	              }
-	        return null;
+	        return  null;
 	    }	
 	}
 

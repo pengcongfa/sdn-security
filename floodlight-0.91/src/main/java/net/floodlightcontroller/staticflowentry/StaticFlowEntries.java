@@ -25,6 +25,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.floodlightcontroller.accessPermissionMS.appInfoStorage.IAppInfoStorageService;
+import net.floodlightcontroller.accessPermissionMS.appInfoStorage.PermissionType;
+import net.floodlightcontroller.accessPermissionMS.xacmlCtrModule.IXacmlCtrService;
 import net.floodlightcontroller.core.annotations.LogMessageCategory;
 import net.floodlightcontroller.core.annotations.LogMessageDoc;
 import net.floodlightcontroller.core.util.AppCookie;
@@ -366,65 +369,142 @@ public class StaticFlowEntries {
             message="Unexpected action '{action}', '{subaction}'",
             explanation="A static flow entry contained an invalid action",
             recommendation=LogMessageDoc.REPORT_CONTROLLER_BUG)
-    public static void parseActionString(OFFlowMod flowMod, String actionstr, Logger log) {
+    public static void parseActionString(IAppInfoStorageService accessCheck,IXacmlCtrService xacmlCtr,String appId,String appKey,
+    		OFFlowMod flowMod, String actionstr, Logger log) {
         List<OFAction> actions = new LinkedList<OFAction>();
         int actionsLength = 0;
-        if (actionstr != null) {
-            actionstr = actionstr.toLowerCase();
-            for (String subaction : actionstr.split(",")) {
-                String action = subaction.split("[=:]")[0];
-                SubActionStruct subaction_struct = null;
-                
-                if (action.equals("output")) {
-                    subaction_struct = StaticFlowEntries.decode_output(subaction, log);
-                }
-                else if (action.equals("enqueue")) {
-                    subaction_struct = decode_enqueue(subaction, log);
-                }
-                else if (action.equals("strip-vlan")) {
-                    subaction_struct = decode_strip_vlan(subaction, log);
-                }
-                else if (action.equals("set-vlan-id")) {
-                    subaction_struct = decode_set_vlan_id(subaction, log);
-                }
-                else if (action.equals("set-vlan-priority")) {
-                    subaction_struct = decode_set_vlan_priority(subaction, log);
-                }
-                else if (action.equals("set-src-mac")) {
-                    subaction_struct = decode_set_src_mac(subaction, log);
-                }
-                else if (action.equals("set-dst-mac")) {
-                    subaction_struct = decode_set_dst_mac(subaction, log);
-                }
-                else if (action.equals("set-tos-bits")) {
-                    subaction_struct = decode_set_tos_bits(subaction, log);
-                }
-                else if (action.equals("set-src-ip")) {
-                    subaction_struct = decode_set_src_ip(subaction, log);
-                }
-                else if (action.equals("set-dst-ip")) {
-                    subaction_struct = decode_set_dst_ip(subaction, log);
-                }
-                else if (action.equals("set-src-port")) {
-                    subaction_struct = decode_set_src_port(subaction, log);
-                }
-                else if (action.equals("set-dst-port")) {
-                    subaction_struct = decode_set_dst_port(subaction, log);
-                }
-                else {
-                    log.error("Unexpected action '{}', '{}'", action, subaction);
-                }
-                
-                if (subaction_struct != null) {
-                    actions.add(subaction_struct.action);
-                    actionsLength += subaction_struct.len;
-                }
-            }
-        }
-        log.debug("action {}", actions);
         
-        flowMod.setActions(actions);
-        flowMod.setLengthU(OFFlowMod.MINIMUM_LENGTH + actionsLength);
+        if(appId.equals("1")){
+        	  if (actionstr != null) {
+                  actionstr = actionstr.toLowerCase();
+                  for (String subaction : actionstr.split(",")) {
+                      String action = subaction.split("[=:]")[0];
+                      SubActionStruct subaction_struct = null;
+                      
+                      if (action.equals("output")) {
+                          subaction_struct = StaticFlowEntries.decode_output(subaction, log);
+                      }
+                      else if (action.equals("enqueue")) {
+                          subaction_struct = decode_enqueue(subaction, log);
+                      }
+                      else if (action.equals("strip-vlan")) {
+                          subaction_struct = decode_strip_vlan(subaction, log);
+                      }
+                      else if (action.equals("set-vlan-id")) {
+                          subaction_struct = decode_set_vlan_id(subaction, log);
+                      }
+                      else if (action.equals("set-vlan-priority")) {
+                          subaction_struct = decode_set_vlan_priority(subaction, log);
+                      }
+                      else if (action.equals("set-src-mac")) {
+                          subaction_struct = decode_set_src_mac(subaction, log);
+                      }
+                      else if (action.equals("set-dst-mac")) {
+                          subaction_struct = decode_set_dst_mac(subaction, log);
+                      }
+                      else if (action.equals("set-tos-bits")) {
+                          subaction_struct = decode_set_tos_bits(subaction, log);
+                      }
+                      else if (action.equals("set-src-ip")) {
+                          subaction_struct = decode_set_src_ip(subaction, log);
+                      }
+                      else if (action.equals("set-dst-ip")) {
+                          subaction_struct = decode_set_dst_ip(subaction, log);
+                      }
+                      else if (action.equals("set-src-port")) {
+                          subaction_struct = decode_set_src_port(subaction, log);
+                      }
+                      else if (action.equals("set-dst-port")) {
+                          subaction_struct = decode_set_dst_port(subaction, log);
+                      }
+                      else {
+                          log.error("Unexpected action '{}', '{}'", action, subaction);
+                      }
+                      
+                      if (subaction_struct != null) {
+                          actions.add(subaction_struct.action);
+                          actionsLength += subaction_struct.len;
+                      }
+                  }
+              }
+              log.debug("action {}", actions);
+              
+              flowMod.setActions(actions);
+              flowMod.setLengthU(OFFlowMod.MINIMUM_LENGTH + actionsLength);
+        }
+       else{
+            if(accessCheck.appAuthentication(appId, appKey)){
+                if(accessCheck.appPermissionSetFinder(appId, PermissionType.flow_mod_modify_hdr)){
+                	 if(xacmlCtr.getXacmlEvaluateResult(appId)){
+                		  if (actionstr != null) {
+                	            actionstr = actionstr.toLowerCase();
+                	            for (String subaction : actionstr.split(",")) {
+                	                String action = subaction.split("[=:]")[0];
+                	                SubActionStruct subaction_struct = null;
+                	                
+                	                if (action.equals("output")) {
+                	                    subaction_struct = StaticFlowEntries.decode_output(subaction, log);
+                	                }
+                	                else if (action.equals("enqueue")) {
+                	                    subaction_struct = decode_enqueue(subaction, log);
+                	                }
+                	                else if (action.equals("strip-vlan")) {
+                	                    subaction_struct = decode_strip_vlan(subaction, log);
+                	                }
+                	                else if (action.equals("set-vlan-id")) {
+                	                    subaction_struct = decode_set_vlan_id(subaction, log);
+                	                }
+                	                else if (action.equals("set-vlan-priority")) {
+                	                    subaction_struct = decode_set_vlan_priority(subaction, log);
+                	                }
+                	                else if (action.equals("set-src-mac")) {
+                	                    subaction_struct = decode_set_src_mac(subaction, log);
+                	                }
+                	                else if (action.equals("set-dst-mac")) {
+                	                    subaction_struct = decode_set_dst_mac(subaction, log);
+                	                }
+                	                else if (action.equals("set-tos-bits")) {
+                	                    subaction_struct = decode_set_tos_bits(subaction, log);
+                	                }
+                	                else if (action.equals("set-src-ip")) {
+                	                    subaction_struct = decode_set_src_ip(subaction, log);
+                	                }
+                	                else if (action.equals("set-dst-ip")) {
+                	                    subaction_struct = decode_set_dst_ip(subaction, log);
+                	                }
+                	                else if (action.equals("set-src-port")) {
+                	                    subaction_struct = decode_set_src_port(subaction, log);
+                	                }
+                	                else if (action.equals("set-dst-port")) {
+                	                    subaction_struct = decode_set_dst_port(subaction, log);
+                	                }
+                	                else {
+                	                    log.error("Unexpected action '{}', '{}'", action, subaction);
+                	                }
+                	                
+                	                if (subaction_struct != null) {
+                	                    actions.add(subaction_struct.action);
+                	                    actionsLength += subaction_struct.len;
+                	                }
+                	            }
+                	        }
+                	        log.debug("action {}", actions);
+                	        
+                	        flowMod.setActions(actions);
+                	        flowMod.setLengthU(OFFlowMod.MINIMUM_LENGTH + actionsLength);
+                	   }
+                	  else{
+                           log.info("---------应用ID："+appId+"-------未通过基于属性的XACML访问控制");
+                          }
+                  }
+                 else{
+                          log.info("---------应用ID："+appId+"-------权限检查失败：无 flow_mod_modify_hdr 权限");
+                 	 }
+               }
+              else{
+                      log.info("---------应用ID："+appId+"-------身份认证失败");
+                  }
+        } 
     } 
     
     @LogMessageDoc(level="ERROR",

@@ -46,21 +46,20 @@ public class ListStaticFlowEntriesResource extends ServerResource {
         String appId=form1.getFirstValue("appid");
         String appkey=form1.getFirstValue("appkey");
 
-        
         if (log.isDebugEnabled())
             log.debug("Listing all static flow entires for switch: " + param);
         
         if (param.toLowerCase().equals("all")) {
         	if(sfpService.getFlows( appId,appkey)!=null){
-            return sfpService.getFlows( appId,appkey);
+        		 return sfpService.getFlows( appId,appkey);
         	}
         } else {
             try {
                 Map<String, Map<String, OFFlowMod>> retMap = 
                         new HashMap<String, Map<String, OFFlowMod>>();
                 if(sfpService.getFlows( appId,appkey,param)!=null){
-                retMap.put(param, sfpService.getFlows( appId,appkey,param));
-                return retMap;
+                	   retMap.put(param, sfpService.getFlows( appId,appkey,param));
+                       return retMap;
                 }
             } catch (NumberFormatException e){
                 setStatus(Status.CLIENT_ERROR_BAD_REQUEST, 

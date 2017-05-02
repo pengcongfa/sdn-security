@@ -61,11 +61,15 @@ parser.add_argument('--type', dest='type', action='store', default='ip', help='v
 parser.add_argument('--src', dest='srcAddress', action='store', default='0.0.0.0', help='source address: if type=ip, A.B.C.D')
 parser.add_argument('--dst', dest='dstAddress', action='store', default='0.0.0.0', help='destination address: if type=ip, A.B.C.D')
 parser.add_argument('--name', dest='circuitName', action='store', default='circuit-1', help='name for circuit, e.g., circuit-1')
+parser.add_argument('--appid', dest='appid', action='store', default='1', help='application ID,e.g.,1')
+parser.add_argument('--appkey', dest='appkey', action='store', default='1', help='application key,e.g.,1')
 
 args = parser.parse_args()
 print args
 
 controllerRestIp = args.controllerRestIp
+appid=args.appid
+appkey=args.appkey
 
 # first check if a local file exists, which needs to be updated after add/delete
 if os.path.exists('./circuits.json'):
@@ -90,7 +94,7 @@ if args.action=='add':
     # retrieve source and destination device attachment points
     # using DeviceManager rest API 
     
-    command = "curl -s http://%s/wm/device/?ipv4=%s\&appid=2\&appkey=pcf199502" % (args.controllerRestIp, args.srcAddress)
+    command = "curl -s http://%s/wm/device/?ipv4=%s\&appid=%s\&appkey=%s" % (args.controllerRestIp, args.srcAddress, appid, appkey)
     result = os.popen(command).read()
     parsedResult = json.loads(result)
     print command+"\n"
@@ -102,7 +106,7 @@ if args.action=='add':
 
     sourcePort = parsedResult[0]['attachmentPoint'][0]['port']
     
-    command = "curl -s http://%s/wm/device/?ipv4=%s\&appid=2\&appkey=pcf199502" % (args.controllerRestIp, args.dstAddress)
+    command = "curl -s http://%s/wm/device/?ipv4=%s\&appid=%s\&appkey=%s" % (args.controllerRestIp, args.dstAddress, appid, appkey)
     result = os.popen(command).read()
     parsedResult = json.loads(result)
     print command+"\n"
@@ -121,7 +125,7 @@ if args.action=='add':
     # retrieving route from source to destination
     # using Routing rest API
     
-    command = "curl -s http://%s/wm/topology/route/%s/%s/%s/%s/json?appid=2\&appkey=pcf199502" % (controllerRestIp, sourceSwitch, sourcePort, destSwitch, destPort)
+    command = "curl -s http://%s/wm/topology/route/%s/%s/%s/%s/json?appid=%s\&appkey=%s" % (controllerRestIp, sourceSwitch, sourcePort, destSwitch, destPort, appid, appkey)
     
     result = os.popen(command).read()
     parsedResult = json.loads(result)
@@ -149,20 +153,20 @@ if args.action=='add':
             # encode each flow entry's name with both switch dpid, user
             # specified name, and flow type (f: forward, r: reverse, farp/rarp: arp)
 
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=2\&appkey=pcf199502" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".f", args.srcAddress, args.dstAddress, "0x800", ap1Port, ap2Port, controllerRestIp)
+            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".f", args.srcAddress, args.dstAddress, "0x800", ap1Port, ap2Port, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command
 
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=2\&appkey=pcf199502" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".farp", "0x806", ap1Port, ap2Port, controllerRestIp)
+            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".farp", "0x806", ap1Port, ap2Port, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command
 
 
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=2\&appkey=pcf199502" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".r", args.dstAddress, args.srcAddress, "0x800", ap2Port, ap1Port, controllerRestIp)
+            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%S" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".r", args.dstAddress, args.srcAddress, "0x800", ap2Port, ap1Port, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command
 
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=2\&appkey=pcf199502" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".rarp", "0x806", ap2Port, ap1Port, controllerRestIp)
+            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".rarp", "0x806", ap2Port, ap1Port, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command
             
@@ -175,7 +179,7 @@ if args.action=='add':
         # confirm successful circuit creation
         # using controller rest API
             
-        command="curl -s http://%s/wm/core/switch/all/flow/json?appid=2\&appkey=pcf199502| python -mjson.tool" % (controllerRestIp)
+        command="curl -s http://%s/wm/core/switch/all/flow/json?appid=%s\&appkey=%s| python -mjson.tool" % (controllerRestIp, appid, appkey)
         result = os.popen(command).read()
         print command + "\n" + result
 
@@ -198,19 +202,19 @@ elif args.action=='delete':
             sw = data['Dpid']
             print data, sw
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=1\&appkey=1" % (sw+"."+args.circuitName+".f", sw, controllerRestIp)
+            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (sw+"."+args.circuitName+".f", sw, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command, result
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=1\&appkey=1" % (sw+"."+args.circuitName+".farp", sw, controllerRestIp)
+            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (sw+"."+args.circuitName+".farp", sw, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command, result
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=1\&appkey=1" % (sw+"."+args.circuitName+".r", sw, controllerRestIp)
+            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (sw+"."+args.circuitName+".r", sw, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command, result
 
-            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=1\&appkey=1" % (sw+"."+args.circuitName+".rarp", sw, controllerRestIp)
+            command = "curl -X DELETE -d '{\"name\":\"%s\", \"switch\":\"%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (sw+"."+args.circuitName+".rarp", sw, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command, result            
             
