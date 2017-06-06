@@ -143,7 +143,7 @@ public class ApplicationInfoStorage implements IFloodlightModule,IAppInfoStorage
 			app1.set("1","default","1","admin","2017-3-1","2020-3-16",1);
 			app2.set("2"," NetworkSwitchCheck","pcf199502","chinaMobile","2017-3-16","2018-6-20",2);
 			appList.addToAppList("1", app1);
-			appList.addToAppList("2", app2);
+			appList.addToAppList("circuitpusher", app2);
 			PermissionSet permissionCatalog1=new PermissionSet();
 			PermissionSet permissionCatalog2=new PermissionSet();
 			permissionCatalog1.addPermissionToSet(PermissionType.read_topology);
@@ -177,7 +177,7 @@ public class ApplicationInfoStorage implements IFloodlightModule,IAppInfoStorage
 			}
 		return false;
 		}
-	@Override
+	@Overrideappkey
 	public String getRegistryByAppId(String appId) {
 		// TODO Auto-generated method stub
 		String registry=appList.selectFromAppList(appId).getRegistry();

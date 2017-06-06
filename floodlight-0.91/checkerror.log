@@ -1,9 +1,9 @@
-178  [main] INFO  n.f.c.module.FloodlightModuleLoader - Loading default modules
-733  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-start
-753  [main] INFO  n.f.core.internal.Controller - Controller role set to MASTER
-765  [main] INFO  n.f.core.internal.Controller - Flush switches on reconnect -- Disabled
-768  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-end
-1632 [main] ERROR o.s.s.i.config.DelegatingCCProvider - Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
+145  [main] INFO  n.f.c.module.FloodlightModuleLoader - Loading default modules
+380  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-start
+383  [main] INFO  n.f.core.internal.Controller - Controller role set to MASTER
+386  [main] INFO  n.f.core.internal.Controller - Flush switches on reconnect -- Disabled
+388  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-end
+744  [main] ERROR o.s.s.i.config.DelegatingCCProvider - Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
 org.sdnplatform.sync.error.PersistException: Could not initialize persistent storage
 	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:106) ~[bin/:na]
 	at org.sdnplatform.sync.internal.StoreRegistry.register(StoreRegistry.java:116) ~[bin/:na]
@@ -42,18 +42,263 @@ Caused by: org.apache.derby.iapi.error.StandardException: DDL is not permitted f
 	at org.apache.derby.impl.sql.GenericPreparedStatement.executeStmt(Unknown Source) ~[derby-10.9.1.0.jar:na]
 	at org.apache.derby.impl.sql.GenericPreparedStatement.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
 	... 15 common frames omitted
-2255 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Setting autoportfast feature to OFF
-2447 [main] INFO  o.s.s.i.config.FallbackCCProvider - Cluster not yet configured; using fallback local configuration
-2449 [main] INFO  o.s.sync.internal.SyncManager - [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=CHALLENGE_RESPONSE, keyStorePath=/etc/floodlight/auth_credentials.jceks, keyStorePassword is unset]
-2695 [main] INFO  o.s.sync.internal.rpc.RPCService - Listening for internal floodlight RPC on localhost/127.0.0.1:6642
-3010 [main] INFO  n.f.core.internal.Controller - Listening for switch connections on 0.0.0.0/0.0.0.0:6633
-4563 [debugserver-main] INFO  n.f.jython.JythonServer - Starting DebugServer on :6655
-135  [main] INFO  n.f.c.module.FloodlightModuleLoader - Loading default modules
-368  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-start
-371  [main] INFO  n.f.core.internal.Controller - Controller role set to MASTER
-374  [main] INFO  n.f.core.internal.Controller - Flush switches on reconnect -- Disabled
-376  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-end
-739  [main] ERROR o.s.s.i.config.DelegatingCCProvider - Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
+836  [main] INFO  n.f.l.internal.LinkDiscoveryManager - Setting autoportfast feature to OFF
+866  [main] INFO  o.s.s.i.config.FallbackCCProvider - Cluster not yet configured; using fallback local configuration
+866  [main] INFO  o.s.sync.internal.SyncManager - [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=CHALLENGE_RESPONSE, keyStorePath=/etc/floodlight/auth_credentials.jceks, keyStorePassword is unset]
+908  [main] INFO  o.s.sync.internal.rpc.RPCService - Listening for internal floodlight RPC on localhost/127.0.0.1:6642
+1016 [main] INFO  n.f.core.internal.Controller - Listening for switch connections on 0.0.0.0/0.0.0.0:6633
+1362 [New I/O server worker #2-1] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39706
+1367 [New I/O server worker #2-2] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39707
+1387 [New I/O server worker #2-3] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39708
+1434 [New I/O server worker #2-2] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39707 DPID[00:00:00:00:00:00:00:02]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1434 [New I/O server worker #2-1] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39706 DPID[00:00:00:00:00:00:00:03]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1434 [New I/O server worker #2-3] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39708 DPID[00:00:00:00:00:00:00:01]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1438 [New I/O server worker #2-2] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:39707 DPID[00:00:00:00:00:00:00:02]]
+1441 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 connected.
+1471 [New I/O server worker #2-1] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:39706 DPID[00:00:00:00:00:00:00:03]]
+1472 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 connected.
+1473 [New I/O server worker #2-3] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:39708 DPID[00:00:00:00:00:00:00:01]]
+1473 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 connected.
+1477 [New I/O server worker #2-3] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+1477 [New I/O server worker #2-3] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+1478 [New I/O server worker #2-1] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+1479 [New I/O server worker #2-1] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+1479 [New I/O server worker #2-3] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+1479 [New I/O server worker #2-3] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+1481 [New I/O server worker #2-2] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+1482 [New I/O server worker #2-2] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+2705 [debugserver-main] INFO  n.f.jython.JythonServer - Starting DebugServer on :6655
+13472 [New I/O server worker #2-4] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39709
+13473 [New I/O server worker #2-4] INFO  n.f.core.internal.OFChannelHandler - Disconnected switch [/192.168.1.103:39709 DPID[?]]
+13742 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth3 changed: DELETE
+13751 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13752 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13752 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13752 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13752 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 port s1-eth1 changed: DOWN
+13752 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 port s1-eth1 changed: DELETE
+13792 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth3 changed: DELETE
+13793 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+13793 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+13794 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+13794 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+13794 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 port s1-eth2 changed: DOWN
+13795 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 port s1-eth2 changed: DELETE
+13888 [New I/O server worker #2-3] INFO  n.f.core.internal.OFChannelHandler - Disconnected switch OFSwitchBase [/192.168.1.103:39708 DPID[00:00:00:00:00:00:00:01]]
+13888 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 disconnected.
+13889 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth3 changed: ADD
+13889 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth2 changed: ADD
+13889 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth1 changed: ADD
+13891 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth3 changed: ADD
+13892 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth1 changed: ADD
+13893 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth2 changed: ADD
+13917 [New I/O server worker #2-5] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39710
+13921 [New I/O server worker #2-5] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:01 -- resetting counters
+13921 [New I/O server worker #2-5] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:01/pktin -- resetting counters
+13921 [New I/O server worker #2-5] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:01/write -- resetting counters
+13921 [New I/O server worker #2-5] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:01/pktin/drops -- resetting counters
+13921 [New I/O server worker #2-5] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:01/write/drops -- resetting counters
+13921 [New I/O server worker #2-5] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39710 DPID[00:00:00:00:00:00:00:01]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+13922 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 connected.
+13925 [New I/O server worker #2-1] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+13925 [New I/O server worker #2-1] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+13926 [New I/O server worker #2-2] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13926 [New I/O server worker #2-2] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13926 [New I/O server worker #2-5] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13926 [New I/O server worker #2-5] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13927 [New I/O server worker #2-5] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+13927 [New I/O server worker #2-5] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+13967 [New I/O server worker #2-2] INFO  n.f.core.internal.OFChannelHandler - Disconnected switch OFSwitchBase [/192.168.1.103:39707 DPID[00:00:00:00:00:00:00:02]]
+13967 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 disconnected.
+13968 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13968 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13968 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13968 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+13993 [New I/O server worker #2-6] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39711
+13995 [New I/O server worker #2-6] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:02 -- resetting counters
+13995 [New I/O server worker #2-6] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:02/pktin -- resetting counters
+13995 [New I/O server worker #2-6] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:02/write -- resetting counters
+13995 [New I/O server worker #2-6] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:02/pktin/drops -- resetting counters
+13997 [New I/O server worker #2-6] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:02/write/drops -- resetting counters
+13997 [New I/O server worker #2-6] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39711 DPID[00:00:00:00:00:00:00:02]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+13998 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 connected.
+13999 [New I/O server worker #2-5] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+13999 [New I/O server worker #2-5] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+14000 [New I/O server worker #2-6] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+14000 [New I/O server worker #2-6] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+14035 [New I/O server worker #2-1] INFO  n.f.core.internal.OFChannelHandler - Disconnected switch OFSwitchBase [/192.168.1.103:39706 DPID[00:00:00:00:00:00:00:03]]
+14035 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 disconnected.
+14036 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+14036 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+14036 [main] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+14036 [main] WARN  n.f.l.i.L.syslog.notification - Inter-switch link removed: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+14069 [New I/O server worker #2-7] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:39712
+14072 [New I/O server worker #2-7] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:03 -- resetting counters
+14072 [New I/O server worker #2-7] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:03/pktin -- resetting counters
+14072 [New I/O server worker #2-7] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:03/write -- resetting counters
+14073 [New I/O server worker #2-7] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:03/pktin/drops -- resetting counters
+14073 [New I/O server worker #2-7] INFO  n.f.debugcounter.DebugCounter - Counter exists for net.floodlightcontroller.core/00:00:00:00:00:00:00:03/write/drops -- resetting counters
+14073 [New I/O server worker #2-7] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:39712 DPID[00:00:00:00:00:00:00:03]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+14073 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 connected.
+14075 [New I/O server worker #2-5] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+14075 [New I/O server worker #2-5] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+14075 [New I/O server worker #2-7] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+14076 [New I/O server worker #2-7] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+14364 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=1, port=2, activeSince=1495676969587, lastSeen=1495676969587], AttachmentPoint [sw=2, port=3, activeSince=1495676969592, lastSeen=1495676969592]]  newmap null 
+14367 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=2, port=3, activeSince=1495676969691, lastSeen=1495676970011]]  newmap null 
+14367 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=1, port=1, activeSince=1495676969724, lastSeen=1495676969964], AttachmentPoint [sw=2, port=2, activeSince=1495676969723, lastSeen=1495676969963], AttachmentPoint [sw=3, port=3, activeSince=1495676969964, lastSeen=1495676969964]]  newmap {1=AttachmentPoint [sw=2, port=2, activeSince=1495676969723, lastSeen=1495676969963]} 
+14367 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=1, port=1, activeSince=1495676969802, lastSeen=1495676969802], AttachmentPoint [sw=2, port=-2, activeSince=1495676969795, lastSeen=1495676969795], AttachmentPoint [sw=3, port=3, activeSince=1495676969803, lastSeen=1495676969803]]  newmap {1=AttachmentPoint [sw=2, port=-2, activeSince=1495676969795, lastSeen=1495676969795]} 
+14367 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=1, port=2, activeSince=1495676969848, lastSeen=1495676969848], AttachmentPoint [sw=3, port=2, activeSince=1495676969847, lastSeen=1495676969847], AttachmentPoint [sw=2, port=3, activeSince=1495676969849, lastSeen=1495676969849]]  newmap {1=AttachmentPoint [sw=3, port=2, activeSince=1495676969847, lastSeen=1495676969847]} 
+14368 [Scheduled-2] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=1, port=2, activeSince=1495676969888, lastSeen=1495676969888], AttachmentPoint [sw=3, port=-2, activeSince=1495676969887, lastSeen=1495676969887], AttachmentPoint [sw=2, port=3, activeSince=1495676969888, lastSeen=1495676969888]]  newmap {1=AttachmentPoint [sw=3, port=-2, activeSince=1495676969887, lastSeen=1495676969887]} 
+14500 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth1 changed: UP
+209040 [Dispatcher: Thread-24] WARN  org.restlet - Exception or error caught in server resource
+org.restlet.resource.ResourceException: Internal Server Error
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
+	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
+	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
+	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
+Caused by: java.lang.NullPointerException: null
+	at net.floodlightcontroller.core.web.ControllerMemoryResource.retrieve(ControllerMemoryResource.java:54) ~[bin/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
+	... 52 common frames omitted
+233374 [Dispatcher: Thread-22] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+233452 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+252912 [Dispatcher: Thread-13] WARN  org.restlet - Exception or error caught in server resource
+org.restlet.resource.ResourceException: Internal Server Error
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
+	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
+	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
+	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
+Caused by: java.lang.NullPointerException: null
+	at net.floodlightcontroller.core.web.ControllerMemoryResource.retrieve(ControllerMemoryResource.java:54) ~[bin/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
+	... 52 common frames omitted
+260864 [Dispatcher: Thread-24] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+261911 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+273407 [Dispatcher: Thread-22] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+274542 [Dispatcher: Thread-24] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------权限检查失败：无 read_topology 权限
+301766 [Dispatcher: Thread-20] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+302768 [Dispatcher: Thread-17] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+303770 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+304772 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+305774 [Dispatcher: Thread-22] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+306775 [Dispatcher: Thread-20] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+307777 [Dispatcher: Thread-17] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+308779 [Dispatcher: Thread-20] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+309781 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+310782 [Dispatcher: Thread-13] INFO  n.f.core.internal.Controller - ---------应用ID：circuitpusher-------身份认证失败
+155  [main] INFO  n.f.c.module.FloodlightModuleLoader - Loading default modules
+410  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-start
+413  [main] INFO  n.f.core.internal.Controller - Controller role set to MASTER
+416  [main] INFO  n.f.core.internal.Controller - Flush switches on reconnect -- Disabled
+418  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-end
+776  [main] ERROR o.s.s.i.config.DelegatingCCProvider - Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
 org.sdnplatform.sync.error.PersistException: Could not initialize persistent storage
 	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:106) ~[bin/:na]
 	at org.sdnplatform.sync.internal.StoreRegistry.register(StoreRegistry.java:116) ~[bin/:na]
@@ -92,13 +337,33 @@ Caused by: org.apache.derby.iapi.error.StandardException: DDL is not permitted f
 	at org.apache.derby.impl.sql.GenericPreparedStatement.executeStmt(Unknown Source) ~[derby-10.9.1.0.jar:na]
 	at org.apache.derby.impl.sql.GenericPreparedStatement.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
 	... 15 common frames omitted
-819  [main] INFO  n.f.l.internal.LinkDiscoveryManager - Setting autoportfast feature to OFF
-849  [main] INFO  o.s.s.i.config.FallbackCCProvider - Cluster not yet configured; using fallback local configuration
-849  [main] INFO  o.s.sync.internal.SyncManager - [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=CHALLENGE_RESPONSE, keyStorePath=/etc/floodlight/auth_credentials.jceks, keyStorePassword is unset]
-900  [main] INFO  o.s.sync.internal.rpc.RPCService - Listening for internal floodlight RPC on localhost/127.0.0.1:6642
-1009 [main] INFO  n.f.core.internal.Controller - Listening for switch connections on 0.0.0.0/0.0.0.0:6633
-2765 [debugserver-main] INFO  n.f.jython.JythonServer - Starting DebugServer on :6655
-55537 [Dispatcher: Thread-15] WARN  org.restlet - Exception or error caught in server resource
+872  [main] INFO  n.f.l.internal.LinkDiscoveryManager - Setting autoportfast feature to OFF
+902  [main] INFO  o.s.s.i.config.FallbackCCProvider - Cluster not yet configured; using fallback local configuration
+903  [main] INFO  o.s.sync.internal.SyncManager - [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=CHALLENGE_RESPONSE, keyStorePath=/etc/floodlight/auth_credentials.jceks, keyStorePassword is unset]
+946  [main] INFO  o.s.sync.internal.rpc.RPCService - Listening for internal floodlight RPC on localhost/127.0.0.1:6642
+1069 [main] INFO  n.f.core.internal.Controller - Listening for switch connections on 0.0.0.0/0.0.0.0:6633
+1673 [New I/O server worker #2-1] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:40191
+1683 [New I/O server worker #2-2] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:40192
+1699 [New I/O server worker #2-3] INFO  n.f.core.internal.OFChannelHandler - New switch connection from /192.168.1.103:40193
+1809 [New I/O server worker #2-3] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:40193 DPID[00:00:00:00:00:00:00:01]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1810 [New I/O server worker #2-2] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:40192 DPID[00:00:00:00:00:00:00:02]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1812 [New I/O server worker #2-2] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:40192 DPID[00:00:00:00:00:00:00:02]]
+1815 [New I/O server worker #2-1] INFO  n.f.core.internal.OFChannelHandler - Switch OFSwitchBase [/192.168.1.103:40191 DPID[00:00:00:00:00:00:00:03]] bound to class class net.floodlightcontroller.core.internal.OFSwitchImpl, writeThrottle=false, description Switch Desc - Vendor: Nicira, Inc.  Model: Open vSwitch  Make: None  Version: 2.0.2  S/N: None
+1819 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 connected.
+1855 [New I/O server worker #2-1] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:40191 DPID[00:00:00:00:00:00:00:03]]
+1856 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 connected.
+1857 [New I/O server worker #2-3] INFO  n.f.core.OFSwitchBase - Clearing all flows on switch OFSwitchBase [/192.168.1.103:40193 DPID[00:00:00:00:00:00:00:01]]
+1858 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:01 connected.
+1861 [New I/O server worker #2-1] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+1862 [New I/O server worker #2-1] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=2, dst=00:00:00:00:00:00:00:03, inPort=3]
+1871 [New I/O server worker #2-2] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+1875 [New I/O server worker #2-2] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:01 outPort=1, dst=00:00:00:00:00:00:00:02, inPort=3]
+1876 [New I/O server worker #2-3] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+1876 [New I/O server worker #2-3] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:03 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=2]
+1877 [New I/O server worker #2-3] INFO  n.f.l.internal.LinkDiscoveryManager - Inter-switch link detected: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+1877 [New I/O server worker #2-3] WARN  n.f.l.i.L.syslog.notification - Link added: Link [src=00:00:00:00:00:00:00:02 outPort=3, dst=00:00:00:00:00:00:00:01, inPort=1]
+2759 [debugserver-main] INFO  n.f.jython.JythonServer - Starting DebugServer on :6655
+5948 [Dispatcher: Thread-24] WARN  org.restlet - Exception or error caught in server resource
 org.restlet.resource.ResourceException: Internal Server Error
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
 	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
@@ -161,8 +426,7 @@ Caused by: java.lang.NullPointerException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
 	... 52 common frames omitted
-76778 [Dispatcher: Thread-21] INFO  n.f.c.web.ControllerMemoryResource - ---------应用ID：2-------身份认证失败
-91176 [Dispatcher: Thread-12] WARN  org.restlet - Exception or error caught in server resource
+8221 [Dispatcher: Thread-15] WARN  org.restlet - Exception or error caught in server resource
 org.restlet.resource.ResourceException: Internal Server Error
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
 	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
@@ -225,8 +489,7 @@ Caused by: java.lang.NullPointerException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
 	... 52 common frames omitted
-97113 [Dispatcher: Thread-12] INFO  n.f.c.web.ControllerMemoryResource - ---------应用ID：2-------权限检查失败：无 read_controller_info 权限
-124719 [Dispatcher: Thread-20] WARN  org.restlet - Exception or error caught in server resource
+9402 [Dispatcher: Thread-22] WARN  org.restlet - Exception or error caught in server resource
 org.restlet.resource.ResourceException: Internal Server Error
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
 	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
@@ -289,7 +552,75 @@ Caused by: java.lang.NullPointerException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
 	... 52 common frames omitted
-149606 [Dispatcher: Thread-19] WARN  org.restlet - Exception or error caught in server resource
+25497 [Dispatcher: Thread-14] WARN  org.restlet - Exception or error caught in server resource
+org.restlet.resource.ResourceException: Internal Server Error
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
+	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
+	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
+	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
+	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
+	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
+	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
+	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
+Caused by: java.lang.NullPointerException: null
+	at net.floodlightcontroller.accessPermissionMS.appInfoStorage.PermissionListManage.isPermitted(PermissionListManage.java:33) ~[bin/:na]
+	at net.floodlightcontroller.accessPermissionMS.appInfoStorage.ApplicationInfoStorage.appPermissionSetFinder(ApplicationInfoStorage.java:85) ~[bin/:na]
+	at net.floodlightcontroller.core.internal.Controller$SwitchManager.getAllSwitchMap(Controller.java:1407) ~[bin/:na]
+	at net.floodlightcontroller.core.internal.Controller.getAllSwitchMap(Controller.java:1929) ~[bin/:na]
+	at net.floodlightcontroller.core.web.ControllerSwitchesResource.retrieve(ControllerSwitchesResource.java:191) ~[bin/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
+	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
+	... 52 common frames omitted
+36007 [Dispatcher: Thread-15] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+56838 [Dispatcher: Thread-21] WARN  org.restlet - Exception or error caught in server resource
 org.restlet.resource.ResourceException: Internal Server Error
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
 	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
@@ -352,8 +683,7 @@ Caused by: java.lang.NullPointerException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
 	... 52 common frames omitted
-154098 [Dispatcher: Thread-21] INFO  n.f.c.web.ControllerMemoryResource - ---------应用ID：2-------未通过基于属性的XACML访问控制
-167383 [Dispatcher: Thread-20] WARN  org.restlet - Exception or error caught in server resource
+66389 [Dispatcher: Thread-14] WARN  org.restlet - Exception or error caught in server resource
 org.restlet.resource.ResourceException: Internal Server Error
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
 	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
@@ -416,243 +746,21 @@ Caused by: java.lang.NullPointerException: null
 	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
 	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
 	... 52 common frames omitted
-169534 [Dispatcher: Thread-19] INFO  n.f.c.web.ControllerMemoryResource - ---------应用ID：2-------未通过基于属性的XACML访问控制
-190175 [Dispatcher: Thread-15] WARN  org.restlet - Exception or error caught in server resource
-org.restlet.resource.ResourceException: Internal Server Error
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
-	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
-	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
-	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
-Caused by: java.lang.NullPointerException: null
-	at net.floodlightcontroller.core.web.ControllerMemoryResource.retrieve(ControllerMemoryResource.java:54) ~[bin/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
-	... 52 common frames omitted
-132  [main] INFO  n.f.c.module.FloodlightModuleLoader - Loading default modules
-364  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-start
-367  [main] INFO  n.f.core.internal.Controller - Controller role set to MASTER
-370  [main] INFO  n.f.core.internal.Controller - Flush switches on reconnect -- Disabled
-372  [main] ERROR n.f.core.internal.Controller - 日志记录controller-init()-end
-732  [main] ERROR o.s.s.i.config.DelegatingCCProvider - Failed to initialize provider org.sdnplatform.sync.internal.config.SyncStoreCCProvider
-org.sdnplatform.sync.error.PersistException: Could not initialize persistent storage
-	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:106) ~[bin/:na]
-	at org.sdnplatform.sync.internal.StoreRegistry.register(StoreRegistry.java:116) ~[bin/:na]
-	at org.sdnplatform.sync.internal.SyncManager.registerPersistentStore(SyncManager.java:184) [bin/:na]
-	at org.sdnplatform.sync.internal.config.SyncStoreCCProvider.init(SyncStoreCCProvider.java:85) ~[bin/:na]
-	at org.sdnplatform.sync.internal.config.DelegatingCCProvider.init(DelegatingCCProvider.java:37) ~[bin/:na]
-	at org.sdnplatform.sync.internal.SyncManager.init(SyncManager.java:489) [bin/:na]
-	at net.floodlightcontroller.core.module.FloodlightModuleLoader.initModules(FloodlightModuleLoader.java:436) [bin/:na]
-	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromList(FloodlightModuleLoader.java:353) [bin/:na]
-	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromList(FloodlightModuleLoader.java:362) [bin/:na]
-	at net.floodlightcontroller.core.module.FloodlightModuleLoader.loadModulesFromConfig(FloodlightModuleLoader.java:200) [bin/:na]
-	at net.floodlightcontroller.core.Main.main(Main.java:55) [bin/:na]
-Caused by: java.sql.SQLException: DDL is not permitted for a read-only connection, user or database.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.EmbedStatement.executeStatement(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.initTable(JavaDBStorageEngine.java:379) ~[bin/:na]
-	at org.sdnplatform.sync.internal.store.JavaDBStorageEngine.<init>(JavaDBStorageEngine.java:104) ~[bin/:na]
-	... 10 common frames omitted
-Caused by: org.apache.derby.impl.jdbc.EmbedSQLException: DDL is not permitted for a read-only connection, user or database.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	... 21 common frames omitted
-Caused by: org.apache.derby.iapi.error.StandardException: DDL is not permitted for a read-only connection, user or database.
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.conn.GenericAuthorizer.authorize(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.execute.GenericResultSetFactory.getDDLResultSet(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.execute.ConstantActionActivation.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.GenericActivationHolder.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.GenericPreparedStatement.executeStmt(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	at org.apache.derby.impl.sql.GenericPreparedStatement.execute(Unknown Source) ~[derby-10.9.1.0.jar:na]
-	... 15 common frames omitted
-822  [main] INFO  n.f.l.internal.LinkDiscoveryManager - Setting autoportfast feature to OFF
-852  [main] INFO  o.s.s.i.config.FallbackCCProvider - Cluster not yet configured; using fallback local configuration
-853  [main] INFO  o.s.sync.internal.SyncManager - [32767] Updating sync configuration ClusterConfig [allNodes={32767=Node [hostname=localhost, port=6642, nodeId=32767, domainId=32767]}, authScheme=CHALLENGE_RESPONSE, keyStorePath=/etc/floodlight/auth_credentials.jceks, keyStorePassword is unset]
-895  [main] INFO  o.s.sync.internal.rpc.RPCService - Listening for internal floodlight RPC on localhost/127.0.0.1:6642
-986  [main] INFO  n.f.core.internal.Controller - Listening for switch connections on 0.0.0.0/0.0.0.0:6633
-2627 [debugserver-main] INFO  n.f.jython.JythonServer - Starting DebugServer on :6655
-21000 [Dispatcher: Thread-15] WARN  org.restlet - Exception or error caught in server resource
-org.restlet.resource.ResourceException: Internal Server Error
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
-	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
-	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
-	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
-Caused by: java.lang.NullPointerException: null
-	at net.floodlightcontroller.core.web.ControllerMemoryResource.retrieve(ControllerMemoryResource.java:54) ~[bin/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
-	... 52 common frames omitted
-86669 [Dispatcher: Thread-21] WARN  org.restlet - Exception or error caught in server resource
-org.restlet.resource.ResourceException: Internal Server Error
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:540) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.get(ServerResource.java:743) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:618) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doNegotiatedHandle(ServerResource.java:679) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.doConditionalHandle(ServerResource.java:357) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.ServerResource.handle(ServerResource.java:1014) ~[org.restlet-2.2M3.jar:na]
-	at org.restlet.resource.Finder.handle(Finder.java:246) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.ApplicationHelper.handle(ApplicationHelper.java:84) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Application.handle(Application.java:384) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.doHandle(Router.java:431) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Router.handle(Router.java:648) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.application.StatusFilter.doHandle(StatusFilter.java:155) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.doHandle(Filter.java:159) [org.restlet-2.2M3.jar:na]
-	at org.restlet.routing.Filter.handle(Filter.java:206) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.CompositeHelper.handle(CompositeHelper.java:211) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Component.handle(Component.java:406) [org.restlet-2.2M3.jar:na]
-	at org.restlet.Server.handle(Server.java:516) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.ServerHelper.handle(ServerHelper.java:72) [org.restlet-2.2M3.jar:na]
-	at org.restlet.engine.adapter.HttpServerHelper.handle(HttpServerHelper.java:152) [org.restlet-2.2M3.jar:na]
-	at org.restlet.ext.simple.internal.SimpleContainer.handle(SimpleContainer.java:80) [org.restlet.ext.simple-2.2M3.jar:na]
-	at org.simpleframework.http.core.Dispatcher.dispatch(Dispatcher.java:121) [simple-5.1.1.jar:na]
-	at org.simpleframework.http.core.Dispatcher.run(Dispatcher.java:103) [simple-5.1.1.jar:na]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_111]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_111]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
-Caused by: java.lang.NullPointerException: null
-	at net.floodlightcontroller.core.web.ControllerMemoryResource.retrieve(ControllerMemoryResource.java:54) ~[bin/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_111]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_111]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_111]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_111]
-	at org.restlet.resource.ServerResource.doHandle(ServerResource.java:524) ~[org.restlet-2.2M3.jar:na]
-	... 52 common frames omitted
+69600 [Dispatcher: Thread-24] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+79960 [Dispatcher: Thread-15] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+80685 [Dispatcher: Thread-22] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+80829 [Dispatcher: Thread-14] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+81381 [Dispatcher: Thread-24] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+81589 [Dispatcher: Thread-22] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+111263 [Dispatcher: Thread-15] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+111328 [Dispatcher: Thread-14] INFO  n.f.core.internal.Controller - ---------应用ID：2-------身份认证失败
+199490 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth1 changed: DOWN
+199491 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth2 changed: DELETE
+199491 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:02 port s2-eth1 changed: DELETE
+199806 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth2 changed: DOWN
+199806 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth1 changed: DELETE
+199807 [main] WARN  n.f.c.i.C.syslog.notification - Switch 00:00:00:00:00:00:00:03 port s3-eth2 changed: DELETE
+199940 [Scheduled-3] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=2, port=1, activeSince=1495677323256, lastSeen=1495677323293]]  newmap null 
+199940 [Scheduled-3] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=2, port=2, activeSince=1495677323261, lastSeen=1495677323284]]  newmap null 
+199941 [Scheduled-3] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=3, port=1, activeSince=1495677323267, lastSeen=1495677323290]]  newmap null 
+199941 [Scheduled-3] INFO  n.f.devicemanager.internal.Device - updateAttachmentPoint: ap [AttachmentPoint [sw=3, port=2, activeSince=1495677323275, lastSeen=1495677323292]]  newmap null 

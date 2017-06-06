@@ -95,6 +95,7 @@ if args.action=='add':
     # using DeviceManager rest API 
     
     command = "curl -s http://%s/wm/device/?ipv4=%s\&appid=%s\&appkey=%s" % (args.controllerRestIp, args.srcAddress, appid, appkey)
+    print "Authentication success"
     result = os.popen(command).read()
     parsedResult = json.loads(result)
     print command+"\n"
@@ -162,7 +163,7 @@ if args.action=='add':
             print command
 
 
-            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%S" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".r", args.dstAddress, args.srcAddress, "0x800", ap2Port, ap1Port, controllerRestIp, appid, appkey)
+            command = "curl -s -d '{\"switch\": \"%s\", \"name\":\"%s\", \"src-ip\":\"%s\", \"dst-ip\":\"%s\", \"ether-type\":\"%s\", \"cookie\":\"0\", \"priority\":\"32768\", \"ingress-port\":\"%s\",\"active\":\"true\", \"actions\":\"output=%s\"}' http://%s/wm/staticflowentrypusher/json?appid=%s\&appkey=%s" % (ap1Dpid, ap1Dpid+"."+args.circuitName+".r", args.dstAddress, args.srcAddress, "0x800", ap2Port, ap1Port, controllerRestIp, appid, appkey)
             result = os.popen(command).read()
             print command
 
